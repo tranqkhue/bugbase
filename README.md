@@ -1,5 +1,5 @@
 # Bugbase
-Bugbase is a ROS package with Arduino driver for low cost indoor robot base. The base consists of stepper motors, operating in open loop, and kinematics is differential drive.
+Bugbase is a ROS package with Arduino driver for low cost indoor robot base. The base consists of stepper motors, operates in open loop, and kinematics is differential drive.
 
 ## Why?
 A lot of people need a indoor robotics platform for experimenting with algorithm such as GMapping, AMCL; or some people need to build a robot from scratch for their own applications. In the meanwhile, a complete Turtlebot kit may be expensive, or building a robot with good odometry (which is important for SLAM) is complex with DC motors, encoders and controllers.
