@@ -1,0 +1,17 @@
+<launch>
+	<node pkg="stepper_diff_wheeled" type="wheel_base.py" name="stepper_diff_wheeled" output="screen">
+    <rosparam>
+      port: '/dev/ttyACM0'
+      baudrate: 115200
+      wheel_base: 0.25
+      steps_per_meter: 749.344
+      left_inversed: false
+      right_inverse: false
+      enable_pin: 9
+      stp_a_pin: 2
+      stp_b_pin: 3
+      dir_a_pin: 5 
+      dir_b_pin: 6 
+    </rosparam>
+	</node>
+</launch>
