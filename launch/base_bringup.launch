@@ -3,8 +3,8 @@
     <rosparam>
       port: '/dev/ttyACM0'
       baudrate: 115200
-      wheel_base: 0.25
-      steps_per_meter: 749.344
+      wheel_base: 0.458
+      steps_per_meter: 2900
       left_inversed: false
       right_inverse: false
       enable_pin: 9

@@ -88,7 +88,7 @@ def calculate_odom():
 
 #=========================================================================
 def send_cmd(v_left_steps, v_right_steps):
-	cmd = str(v_left_steps)+"|"+str(v_right_steps)+"\n"
+	cmd = str(round(v_left_steps,2))+"|"+str(round(v_right_steps,2))+"\n"
 	ser.write(cmd.encode())
 
 def inversed_kinematics(linear_x, angular_z):
