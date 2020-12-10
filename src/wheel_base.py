@@ -21,12 +21,15 @@ def stepper_params_loader():
 	initial_string = INITIAL_CHAR+"|"+STEP_EN+"|"+STEP_A_PIN+"|"+\
 					 STEP_B_PIN+"|"+DIR_A_PIN+"|"+DIR_B_PIN+"\n"
 	ser.write(initial_string.encode())
-	output = ser.readline()
+	output = ser.readline
+	'''
 	if (output == "DI\r\n"):
 		time.sleep(0.5)
 		return True
 	else:
 		return False
+	'''
+	return True
 #=========================================================================
 
 #=========================================================================
@@ -78,7 +81,7 @@ def calculate_odom():
 	#odom_msg.twist.twist.angular.y = 0
 	odom_msg.twist.twist.angular.z  = 0.0
 
-	last_time = current_time;
+	last_time = current_time
 
 	return odom_msg
 #=========================================================================
@@ -114,7 +117,7 @@ def cmd_callback(data):
 #=========================================================================
 
 #=========================================================================
-rospy.init_node("stepper_diff_wheeled")
+rospy.init_node("bugbase")
 
 port = rospy.get_param("~port", "/dev/ttyACM0")
 baud = rospy.get_param("~baudrate", 115200)

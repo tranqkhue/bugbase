@@ -12,8 +12,8 @@ const int DIR_B_PIN=6;
 //int const * c;
 //int const * d;
 
-AccelStepper stepper0(AccelStepper::DRIVER, *a, DIR_A_PIN);
-AccelStepper stepper1(AccelStepper::DRIVER, *b, DIR_B_PIN);
+AccelStepper stepper0(AccelStepper::DRIVER, STEP_A_PIN, DIR_A_PIN);
+AccelStepper stepper1(AccelStepper::DRIVER, STEP_B_PIN, DIR_B_PIN);
 
 char received_arr[19];
 float motors_vel[2];// = {800,800};
@@ -46,13 +46,11 @@ void setup(){
     }
   }
   //--------------------------------------------------------------------
-  Serial.println("DI"); //Confirm having done initializing
   */
+  Serial.println("DI"); //Confirm having done initializing
 
   pinMode(STEP_EN, OUTPUT);
   digitalWrite(STEP_EN, LOW);
-  a = &STEP_A_PIN;
-  b = &STEP_B_PIN;
 
   stepper0.setMaxSpeed(3300);  
   stepper1.setMaxSpeed(3300);
