@@ -79,7 +79,7 @@ def calculate_odom():
 	#odom_msg.twist.twist.linear.z  = 0
 	#odom_msg.twist.twist.angular.x = 0
 	#odom_msg.twist.twist.angular.y = 0
-	odom_msg.twist.twist.angular.z  = 0.0
+	odom_msg.twist.twist.angular.z  = twist_angular_z
 
 	last_time = current_time
 
