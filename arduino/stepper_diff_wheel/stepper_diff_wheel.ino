@@ -52,6 +52,10 @@ void setup(){
 
   stepper0.setMaxSpeed(3300);  
   stepper1.setMaxSpeed(3300);
+  stepper0.setSpeed(motors_vel[0]);
+  stepper1.setSpeed(motors_vel[1]);
+  stepper0.runSpeed();
+  stepper1.runSpeed();
   
   Serial.println("DI"); //Confirm having done initializing
 }

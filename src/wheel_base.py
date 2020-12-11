@@ -96,6 +96,7 @@ def inversed_kinematics(linear_x, angular_z):
 	global STEPS_PER_METER
 	global LEFT_INVERSED 
 	global RIGHT_INVERSED
+
 	v_left  = (linear_x - angular_z * WHEEL_BASE/2.0) #Unit: m/s
 	v_right = (linear_x + angular_z * WHEEL_BASE/2.0) #Unit: m/s
 	v_left_steps  = v_left  * STEPS_PER_METER
@@ -135,6 +136,7 @@ last_time 		= None
 if __name__ == "__main__":
 	if (base_status == True):
 		rospy.loginfo("Stepper wheel base done initializing!")
+		send_cmd(0, 0)
 		rate = rospy.Rate(30)
 		WHEEL_BASE 		= rospy.get_param("~wheel_base",      	0.25)
 		#For stepper with 200 steps per revolution and wheel diameter of 85mm
