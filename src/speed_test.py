@@ -14,12 +14,12 @@ vel.linear.z = 0.0
 
 vel.angular.x = 0.0 # rad /s
 vel.angular.y = 0.0
-vel.angular.z = -0.78539*2
+vel.angular.z = 0.78539816339
 
 cmd_pub.publish(vel)
 
 # Wait for duration seconds
-duration = rospy.Duration(8.0,0)
+duration = rospy.Duration(16.0,0)
 rospy.sleep(rospy.Duration(1.0,0))
 
 # Set linear velocity to 0.0 m/s

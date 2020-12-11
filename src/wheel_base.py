@@ -96,8 +96,8 @@ def inversed_kinematics(linear_x, angular_z):
 	global STEPS_PER_METER
 	global LEFT_INVERSED 
 	global RIGHT_INVERSED
-	v_left  = (linear_x - angular_z * WHEEL_BASE / 2.0) #Unit: m/s
-	v_right = (linear_x + angular_z * WHEEL_BASE / 2.0) #Unit: m/s
+	v_left  = (linear_x - angular_z * WHEEL_BASE/2.0) #Unit: m/s
+	v_right = (linear_x + angular_z * WHEEL_BASE/2.0) #Unit: m/s
 	v_left_steps  = v_left  * STEPS_PER_METER
 	v_right_steps = v_right * STEPS_PER_METER
 	if (LEFT_INVERSED  == True):
