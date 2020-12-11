@@ -147,12 +147,12 @@ if __name__ == "__main__":
 		rospy.Subscriber("cmd_vel", Twist, cmd_callback)
 		pub = rospy.Publisher("odom", Odometry, queue_size=1)
 		while not rospy.is_shutdown():
-			rate.sleep()
 			if (last_time == None):
 				last_time = rospy.get_time()
 				continue
 			odom_msg = calculate_odom()
 			pub.publish(odom_msg)
+			rate.sleep()
 	else:
 		rospy.logerr("Cannot initialize stepper wheel base!")
 

@@ -8,7 +8,7 @@ cmd_pub = rospy.Publisher("/cmd_vel",Twist, queue_size = 1)
 
 # Set linear velocity to 0.2 m/s
 vel = Twist()
-vel.linear.x = 0.2 # m/s
+vel.linear.x = -0.2 # m/s
 vel.linear.y = 0.0
 vel.linear.z = 0.0
 
