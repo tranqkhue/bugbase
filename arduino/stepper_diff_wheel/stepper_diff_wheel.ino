@@ -16,7 +16,7 @@ AccelStepper stepper0(AccelStepper::DRIVER, STEP_A_PIN, DIR_A_PIN);
 AccelStepper stepper1(AccelStepper::DRIVER, STEP_B_PIN, DIR_B_PIN);
 
 char received_arr[19];
-float motors_vel[2];// = {800,800};
+float motors_vel[2] = {0.0,0.0};
 const char delimiters[] = "|";
 char * running_char;
 char * token;
@@ -47,13 +47,13 @@ void setup(){
   }
   //--------------------------------------------------------------------
   */
-  Serial.println("DI"); //Confirm having done initializing
-
   pinMode(STEP_EN, OUTPUT);
   digitalWrite(STEP_EN, LOW);
 
   stepper0.setMaxSpeed(3300);  
   stepper1.setMaxSpeed(3300);
+  
+  Serial.println("DI"); //Confirm having done initializing
 }
 //----------------------------------------------------------------------
 //Message format: +xxxx.xx|+yyyy.yy\n (velocity: steps per second)
@@ -68,10 +68,8 @@ void loop(){
     token           = strsep(&running_char, delimiters);
     motors_vel[1]   = atof(token);
   }
-
   stepper0.setSpeed(motors_vel[0]);
   stepper1.setSpeed(motors_vel[1]);
   stepper0.runSpeed();
   stepper1.runSpeed();
-  //Serial.println(motors_vel[1]);
 }
