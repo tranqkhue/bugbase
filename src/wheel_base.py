@@ -88,7 +88,8 @@ def calculate_odom():
 
 #=========================================================================
 def send_cmd(v_left_steps, v_right_steps):
-	cmd = str(round(v_left_steps,2))+"|"+str(round(v_right_steps,2))+"\n"
+	cmd = "<" + "{:0.2f}".format(v_left_steps).zfill(8)  + "|" + \
+	      "{:0.2f}".format(v_right_steps).zfill(8) + ">"
 	ser.write(cmd.encode())
 
 def inversed_kinematics(linear_x, angular_z):
@@ -123,8 +124,16 @@ rospy.init_node("bugbase")
 port = rospy.get_param("~port", "/dev/ttyACM0")
 baud = rospy.get_param("~baudrate", 115200)
 ser  = serial.Serial(port, baud, timeout=0.5)
+		
+WHEEL_BASE 		= rospy.get_param("~wheel_base",      	0.25)
+#For stepper with 200 steps per revolution and wheel diameter of 85mm
+STEPS_PER_METER = rospy.get_param("~steps_per_meter", 	749.344) 
+LEFT_INVERSED 	= rospy.get_param("~left_inversed", 	False)
+RIGHT_INVERSED 	= rospy.get_param("~right_inversed", 	False)
+
 time.sleep(3) #Give Arduino some time to startup
-base_status = stepper_params_loader()
+#base_status = stepper_params_loader()
+base_status = True
 
 twist_linear_x  = 0
 twist_angular_z = 0
@@ -138,14 +147,9 @@ if __name__ == "__main__":
 		rospy.loginfo("Stepper wheel base done initializing!")
 		send_cmd(0, 0)
 		rate = rospy.Rate(30)
-		WHEEL_BASE 		= rospy.get_param("~wheel_base",      	0.25)
-		#For stepper with 200 steps per revolution and wheel diameter of 85mm
-		STEPS_PER_METER = rospy.get_param("~steps_per_meter", 	749.344) 
-		LEFT_INVERSED 	= rospy.get_param("~left_inversed", 	False)
-		RIGHT_INVERSED 	= rospy.get_param("~right_inversed", 	False)
 
-		rospy.Subscriber("cmd_vel", Twist, cmd_callback)
-		pub = rospy.Publisher("odom", Odometry, queue_size=1)
+		rospy.Subscriber("/cmd_vel", Twist, cmd_callback)
+		pub = rospy.Publisher("/odom", Odometry, queue_size=1)
 		while not rospy.is_shutdown():
 			if (last_time == None):
 				last_time = rospy.get_time()
@@ -155,5 +159,4 @@ if __name__ == "__main__":
 			rate.sleep()
 	else:
 		rospy.logerr("Cannot initialize stepper wheel base!")
-
 	ser.close()
