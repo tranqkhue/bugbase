@@ -7,11 +7,6 @@
       steps_per_meter: 4800 
       left_inversed: true
       right_inversed: false
-      enable_pin: 9
-      stp_a_pin: 2
-      stp_b_pin: 3
-      dir_a_pin: 5 
-      dir_b_pin: 6 
     </rosparam>
 	</node>
 </launch>

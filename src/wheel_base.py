@@ -10,29 +10,6 @@ import serial
 import time
 
 #=========================================================================
-def stepper_params_loader():
-	INITIAL_CHAR = "i"
-	STEP_EN    = str(rospy.get_param("~enable_pin", 8))
-	STEP_A_PIN = str(rospy.get_param("~stp_a_pin",  2))
-	STEP_B_PIN = str(rospy.get_param("~stp_b_pin",  3))
-	DIR_A_PIN  = str(rospy.get_param("~dir_a_pin",  5))
-	DIR_B_PIN  = str(rospy.get_param("~dir_b_pin",  6))
-
-	initial_string = INITIAL_CHAR+"|"+STEP_EN+"|"+STEP_A_PIN+"|"+\
-					 STEP_B_PIN+"|"+DIR_A_PIN+"|"+DIR_B_PIN+"\n"
-	ser.write(initial_string.encode())
-	output = ser.readline
-	'''
-	if (output == "DI\r\n"):
-		time.sleep(0.5)
-		return True
-	else:
-		return False
-	'''
-	return True
-#=========================================================================
-
-#=========================================================================
 def calculate_odom():
 	global last_time
 	global twist_linear_x 
@@ -132,7 +109,6 @@ LEFT_INVERSED 	= rospy.get_param("~left_inversed", 	False)
 RIGHT_INVERSED 	= rospy.get_param("~right_inversed", 	False)
 
 time.sleep(3) #Give Arduino some time to startup
-#base_status = stepper_params_loader()
 base_status = True
 
 twist_linear_x  = 0
