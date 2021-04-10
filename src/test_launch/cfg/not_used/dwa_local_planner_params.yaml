@@ -1,0 +1,56 @@
+DWAPlannerROS:
+
+  #### base_local_planner::LocalPlannerLimits ###
+
+  odom_topic: odom/filtered_odom_baselink
+  # velocities
+  holonomic_robot: false
+  max_vel_y: 0
+  min_vel_y: 0
+  acc_lim_y: 0
+  vy_samples: 0
+
+  max_vel_trans: 1.0
+  min_vel_trans: 0.0
+
+  max_vel_x: 0.6
+  min_vel_x: -0.3
+
+
+  max_vel_theta: 1.0
+  min_vel_theta: -1.0
+
+  trans_stopped_vel: 0.1
+  theta_stopped_vel: 0.1
+
+  # accelerations
+  acc_lim_trans: 13
+  acc_lim_x: 10
+ 
+  acc_lim_th: 3.0
+
+  # Goal
+  xy_goal_tolerance: 0.1
+  yaw_goal_tolerance: 0.1
+  latch_xy_goal_tolerance: true
+
+  # Prune the plan?
+  prune_plan: true
+
+  ### DWA SPECIFIC PARAMETERS ###
+
+  # Forward simulation parameters
+  sim_period: 2.0
+  sim_time: 2.0
+  sim_granularity: 0.5
+
+  vx_samples: 20
+  
+  vth_samples: 40
+
+  path_distance_bias: 32.0
+  goal_distance_bias: 9.0
+  occdist_scale: 0.02
+  stop_time_buffer: 0.5
+
+  oscillation_reset_dist: 0.05

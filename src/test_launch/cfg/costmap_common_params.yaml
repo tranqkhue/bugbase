@@ -1,0 +1,42 @@
+
+#---standard pioneer footprint---
+#---(in meters)---
+robot_radius: 0.17
+footprint_padding: 0.00
+
+transform_tolerance: 0.2
+map_type: costmap
+
+always_send_full_costmap: true
+
+obstacle_layer:
+ enabled: true
+ obstacle_range: 3.0
+ raytrace_range: 6.0
+ inflation_radius: 0.8
+ track_unknown_space: true
+ combination_method: 1
+
+ observation_sources: laser_scan_sensor
+ laser_scan_sensor: {data_type: LaserScan, topic: /scan, marking: true, clearing: true}
+
+
+inflation_layer:
+  enabled:              false
+  cost_scaling_factor:  10.0  # exponential rate at which the obstacle cost drops off (default: 10)
+  inflation_radius:     2.0 # max. distance from an obstacle at which costs are incurred for planning paths.
+
+occupancy_grid:
+  track_unknown: true
+  inflation_enable: false
+  inflation_radius: 1.0
+  update_frequency: 15.0
+  stack_policy: -1
+  static_sources: road_curb road_curb_rear high_lidar lidar_360 image_segmentation
+  image_segmentation: {msg_type: OccupancyGrid, topic: /map/image_segmentation, enable_publish: false}
+  road_curb: {msg_type: OccupancyGrid, topic: /realsense_grid, enable_publish: false}
+  road_curb_rear: {msg_type: OccupancyGrid, topic: /realsense_grid_back, enable_publish: false}
+  high_lidar: {msg_type: OccupancyGrid, topic: /depth_front, enable_publish: false}
+  lidar_360: {msg_type: OccupancyGrid, topic: /map/scan, enable_publish: false}
+  # static_sources: count_map
+  # count_map: {msg_type: OccupancyGrid, topic: /stack_grid/map, enable_publish: false}

@@ -1,0 +1,9 @@
+<launch>
+    <node name="image_segmentation" pkg="bugcar_perception_stack" type="inference_video_raw.py" cwd="node"> </node>
+    <node name="lidar_high" pkg="bugcar_perception_stack" type="calibration_laser_scan_rotated.py" cwd="node"/>
+    <node name="laser_realsense_front" pkg="bugcar_perception_stack" output="screen" type="use_rs_as_lidar_v2_args.py" args="841612072050 -f 30 -s 0.3"/>
+    <node name="laser_realsense_back" pkg="bugcar_perception_stack" type="use_rs_as_lidar_v2_args.py"  args="819312071039 -f 30 -s 0.3 -t /realsense_grid_back -o 0 0 1 0 -p -0.45 2.5 0 "/>
+    <include file="$(find rplidar_ros)/launch/rplidar.launch" />
+    <node pkg="tf" type="static_transform_publisher" name="lidar_transform" args="0 0 0 0 0 1 0 base_link laser 100" clear_params="true"/>
+    <node name="lidar_360" pkg="lidar_raytrace" type="raytrace_2h30_sang.py" cwd="node" output="screen"/>	
+</launch>

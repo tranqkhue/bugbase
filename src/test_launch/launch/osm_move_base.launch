@@ -1,0 +1,44 @@
+<launch>
+	
+	<arg name="osm_map_path" default="$(find test_launch)/cfg/osm/map_camp.osm"/>
+	<arg name="main_path" default="$(find test_launch)"/>
+
+	<!--param name="use_sim_time" value="true"/-->
+
+        <!--  ************** Navigation ***************  -->
+	<node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen" clear_params="true">
+		<rosparam file="$(arg main_path)/cfg/costmap_common_params.yaml" command="load" ns="global_costmap" />
+  	 	<rosparam file="$(arg main_path)/cfg/costmap_common_params.yaml" command="load" ns="local_costmap" />
+  		<rosparam file="$(arg main_path)/cfg/local_costmap_params.yaml" command="load" />
+  		<rosparam file="$(arg main_path)/cfg/global_costmap_params.yaml" command="load" />
+  		<rosparam file="$(arg main_path)/cfg/teb_local_planner_params.yaml" command="load"/>
+  		<!--rosparam file="$(arg main_path)/cfg/dwa_local_planner_params.yaml" command="load"/-->
+		<rosparam file="$(arg main_path)/cfg/osm_planner_params.yaml" command="load" />
+
+		<param name="base_local_planner" value="teb_local_planner/TebLocalPlannerROS" />
+		<!--param name="base_local_planner" value="dwa_local_planner/DWAPlannerROS" /-->
+		<!--param name="base_local_planner" value="base_local_planner/TrajectoryPlannerROS" /-->
+		<param name="base_global_planner" value="osm_planner/Planner" />
+		
+		<!-- Operation frequency -->
+		<param name="controller_frequency" value="30.0" />
+		<param name="planner_frequency" value="30.0" />
+		
+		<!-- Recovery behaviour setting -->
+		<param name="controller_patience" value="10"/>
+		<param name="planner_patience" value="10"/>
+		<param name="max_planning_retries" value="0" />
+		
+		<param name="recovery_behavior_enabled" value="true"/>
+		<param name="clearing_rotation_allowed" value="true"/>
+		<param name="oscillation_timeout" value="0.0" />
+		<param name="oscillation_distance" value="0"/>
+
+		<param name="Planner/osm_map_path" value="$(arg osm_map_path)" />
+
+		<remap from="/cmd_vel" to="/move_base/cmd_vel"/>
+
+	</node>
+
+	<node pkg="osm_planner" type="getOrigin.py" name="origin_node" output="screen" />
+</launch>

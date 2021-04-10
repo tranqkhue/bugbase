@@ -1,0 +1,16 @@
+local_costmap:
+  global_frame: base_link
+  robot_base_frame: base_link
+  update_frequency: 30
+  publish_frequency: 30
+  static_map: false
+  rolling_window: true
+  width: 40
+  height: 40
+  resolution: 0.15
+  transform_tolerance: 0.5
+  
+  plugins:
+   - {name: occupancy_grid, type: "stack_grid_bugcar::StackGrid"}
+   # - {name: obstacle_layer, type: "costmap_2d::ObstacleLayer"}
+   # - {name: inflation_layer, type: "costmap_2d::InflationLayer"}

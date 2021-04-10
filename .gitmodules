@@ -1,0 +1,63 @@
+[submodule "src/bno055/bno055_usb_stick"]
+	path = src/bno055/bno055_usb_stick
+	url = https://github.com/yoshito-n-students/bno055_usb_stick.git
+[submodule "src/realsense-ros"]
+	path = src/realsense-ros
+	url = https://github.com/IntelRealSense/realsense-ros.git
+[submodule "src/stack_grid"]
+	path = src/stack_grid
+	url = https://github.com/anhquan-dao/stack_grid_bugcar.git
+[submodule "src/twist_mux"]
+	path = src/twist_mux
+	url = https://github.com/ros-teleop/twist_mux.git
+[submodule "src/hokuyo_node"]
+	path = src/hokuyo_node
+	url = https://github.com/ros-drivers/hokuyo_node.git
+[submodule "src/ublox"]
+	path = src/ublox
+	url = https://github.com/KumarRobotics/ublox
+[submodule "src/navigation"]
+	path = src/navigation
+	url = https://github.com/ros-planning/navigation.git
+[submodule "src/robot_localization"]
+	path = src/robot_localization
+	url = https://github.com/cra-ros-pkg/robot_localization
+[submodule "src/teb_local_planner"]
+	path = src/teb_local_planner
+	url = https://github.com/rst-tu-dortmund/teb_local_planner.git
+[submodule "src/rplidar_ros"]
+	path = src/rplidar_ros
+	url = https://github.com/Slamtec/rplidar_ros.git
+[submodule "src/osm_planner"]
+	path = src/osm_planner
+	url = https://github.com/MichalDobis/osm_planner.git
+[submodule "src/bugbase"]
+	path = src/bugbase
+	url = https://github.com/tranqkhue/bugbase.git
+[submodule "src/mapviz_stack/mapviz"]
+	path = src/mapviz_stack/mapviz
+	url = https://github.com/swri-robotics/mapviz.git
+[submodule "src/stack_og"]
+	path = src/stack_og
+	url = https://github.com/anhquan-dao/stack_og.git
+[submodule "src/hls_lfcd_lds_driver"]
+	path = src/hls_lfcd_lds_driver
+	url = https://github.com/ROBOTIS-GIT/hls_lfcd_lds_driver.git
+[submodule "src/bno055/bno055_usb_stick_msgs"]
+	path = src/bno055/bno055_usb_stick_msgs
+	url = https://github.com/yoshito-n-students/bno055_usb_stick_msgs
+[submodule "src/teleop_twist_joy"]
+	path = src/teleop_twist_joy
+	url = https://github.com/ros-teleop/teleop_twist_joy.git
+[submodule "src/bugcar_perception_stack/src/bugcar_image_segmentation"]
+	path = src/bugcar_perception_stack/src/bugcar_image_segmentation
+	url = https://github.com/tranqkhue/bugcar_image_segmentation.git
+[submodule "src/driver_common"]
+	path = src/driver_common
+	url = https://github.com/ros-drivers/driver_common.git
+[submodule "src/laser_filters"]
+	path = src/laser_filters
+	url = https://github.com/ros-perception/laser_filters.git
+[submodule "src/depthimage_to_laserscan"]
+	path = src/depthimage_to_laserscan
+	url = https://github.com/ros-perception/depthimage_to_laserscan.git

@@ -1,0 +1,89 @@
+capture_directory: "~"
+fixed_frame: map
+target_frame: <none>
+fix_orientation: false
+rotate_90: false
+enable_antialiasing: true
+show_displays: true
+show_status_bar: true
+show_capture_tools: true
+window_width: 988
+window_height: 711
+view_scale: 0.1904438
+offset_x: -21.37766
+offset_y: -16.33773
+use_latest_transforms: true
+background: "#a0a0a4"
+displays:
+  - type: mapviz_plugins/tile_map
+    name: new display
+    config:
+      visible: true
+      collapsed: false
+      custom_sources:
+        - base_url: https://a.tile.openstreetmap.org/{level}/{x}/{y}.png
+          max_zoom: 19
+          name: OSM
+          type: wmts
+      bing_api_key: Avsqyvz6N-_fMWQEW8yR_h2aeA92mes5Th6i3Ch1RRmER6gSyftm36PZZIfKeny_
+      source: OSM
+  - type: mapviz_plugins/odometry
+    name: new display
+    config:
+      visible: true
+      collapsed: false
+      topic: /odom/filtered_map_baselink
+      color: "#ef2929"
+      draw_style: points
+      position_tolerance: 0
+      buffer_size: 0
+      show_laps: false
+      show_covariance: false
+      show_all_covariances: false
+      static_arrow_sizes: false
+      arrow_size: 306
+      show_timestamps: 0
+  - type: mapviz_plugins/odometry
+    name: new display
+    config:
+      visible: true
+      collapsed: false
+      topic: /odom/filtered_odom_baselink
+      color: "#fce94f"
+      draw_style: points
+      position_tolerance: 0
+      buffer_size: 0
+      show_laps: false
+      show_covariance: false
+      show_all_covariances: false
+      static_arrow_sizes: false
+      arrow_size: 228
+      show_timestamps: 0
+  - type: mapviz_plugins/occupancy_grid
+    name: new display
+    config:
+      visible: true
+      collapsed: false
+      alpha: 0.4000000000000001
+      topic: /move_base/local_costmap/costmap
+      update: true
+      scheme: costmap
+  - type: mapviz_plugins/move_base
+    name: new display
+    config:
+      visible: true
+      collapsed: false
+  - type: mapviz_plugins/path
+    name: new display
+    config:
+      visible: true
+      collapsed: false
+      topic: /move_base/TebLocalPlannerROS/global_plan
+      color: "#204a87"
+  - type: mapviz_plugins/path
+    name: new display
+    config:
+      visible: true
+      collapsed: false
+      topic: /move_base/TebLocalPlannerROS/local_plan
+      color: "#00ff00"

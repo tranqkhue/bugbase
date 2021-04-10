@@ -1,0 +1,155 @@
+TebLocalPlannerROS:
+
+  odom_topic: "odometry/filtered_map_baselink"
+    
+    # Trajectory
+  
+  teb_autosize: True
+  dt_ref: 0.8
+  dt_hysteresis: 0.1
+  max_samples: 300
+  min_samples: 3
+  global_plan_overwrite_orientation: True
+  allow_init_with_backwards_motion: False
+  max_global_plan_lookahead_dist: 0.0 # TEST
+  global_plan_viapoint_sep: 1.0
+  global_plan_prune_distance: 4.0
+  exact_arc_length: False
+  feasibility_check_no_poses: 1
+  publish_feedback: True
+  
+  # Robot
+       
+  max_vel_x: 0.8
+  max_vel_x_backwards: 0.2
+  max_vel_y: 0.0
+  max_vel_theta: 0.35
+  acc_lim_x: 0.2
+  acc_lim_theta: 0.1
+  min_turning_radius: 0.0 # diff-drive robot (can turn on place!)
+  wheelbase: 0.485
+
+  transfrom_tolerance: 0.5
+
+  footprint_model:
+    type: "circular"
+    radius: 1.0
+
+  # GoalTolerance
+    
+  xy_goal_tolerance: 10
+  yaw_goal_tolerance: 2
+  free_goal_vel: False
+  complete_global_plan: False
+    
+  # Obstacles
+  
+  min_obstacle_dist: 0.8 # This value must also include our robot radius, since footprint_model is set to "point".
+  inflation_dist: 1.0
+  include_costmap_obstacles: True
+  costmap_obstacles_behind_robot_dist: 3.0
+  obstacle_poses_affected: 20
+
+  dynamic_obstacle_inflation_dist: 2.0
+  include_dynamic_obstacles: true
+
+  ## Costmap converter plugin   
+  # costmap_converter_plugin: "costmap_converter::CostmapToPolygonsDBSMCCH"
+  costmap_converter_plugin: "costmap_converter::CostmapToLinesDBSRANSAC"
+  # costmap_converter_plugin: "costmap_converter::CostmapToLinesDBSMCCH"
+  # costmap_converter_plugin: "costmap_converter::CostmapToPolygonsDBSConcaveHull"
+  # costmap_converter_plugin: "" # deactivate plugin
+  costmap_converter_spin_thread: True
+  costmap_converter_rate: 30
+ 
+ 
+  ## Configure plugins (namespace move_base/TebLocalPlannerROS/PLUGINNAME)
+  ## The parameters must be added for each plugin separately
+  costmap_converter/CostmapToLinesDBSRANSAC:
+    cluster_max_distance: 0.4
+    cluster_min_pts: 2
+    ransac_inlier_distance: 0.15
+    ransac_min_inliers: 10
+    ransac_no_iterations: 100
+    ransac_remainig_outliers: 3
+    ransac_convert_outlier_pts: True
+    ransac_filter_remaining_outlier_pts: False
+    convex_hull_min_pt_separation: 0.1
+
+  # costmap_converter/CostmapToPolygonsDBSMCCH:
+  #   cluster_max_distance: 0.4
+  #   cluster_min_pts: 2
+  #   cluster_max_pts: 30
+  #   convex_hull_min_pt_separation: 0.1
+
+  # costmap_converter/CostmapToPolygonsDBSConcaveHull:
+  #   cluster_max_distance: 0.4
+  #   cluster_min_pts: 2
+  #   cluster_max_pts: 30
+  #   convex_hull_min_pt_separation: 0.1
+  #   convex_hull_depth: 2.0
+
+  # costmap_converter/CostmapToLinesDBSMCCH:
+  #   cluster_max_distance: 0.4
+  #   cluster_min_pts: 2
+  #   cluster_max_pts: 30
+  #   convex_hull_min_pt_separation: 0.1
+  #   support_pts_max_dist: 0.3
+  #   support_pts_max_dist_inbetween: 1.0
+  #   min_support_pts: 2
+
+  # Optimization
+  
+  no_inner_iterations: 3 # TEST
+  no_outer_iterations: 2 # TEST
+  optimization_activate: True
+  optimization_verbose: False
+  penalty_epsilon: 0.1 # TEST
+  obstacle_cost_exponent: 4
+  weight_max_vel_x: 10
+  weight_max_vel_theta: 10
+  weight_acc_lim_x: 1
+  weight_acc_lim_theta: 1
+  weight_kinematics_nh: 50
+  weight_kinematics_forward_drive: 25 # TEST
+  weight_kinematics_turning_radius: 10
+  weight_optimaltime: 20 # must be > 0
+  weight_shortest_path: 20
+  weight_obstacle: 100
+  weight_inflation: 50 # TEST
+  weight_dynamic_obstacle: 100
+  weight_dynamic_obstacle_inflation: 50
+  weight_viapoint: 10 # TEST
+  weight_adapt_factor: 10
+
+  # Homotopy Class Planner
+
+  enable_homotopy_class_planning: True
+  enable_multithreading: True
+  max_number_classes: 5 # TEST
+  selection_cost_hysteresis: 1.0
+  selection_prefer_initial_plan: 0.9
+  selection_obst_cost_scale: 100.0
+  selection_alternative_time_cost: False
+  roadmap_graph_no_samples: 15
+  roadmap_graph_area_width: 5
+  roadmap_graph_area_length_scale: 1.0
+  h_signature_prescaler: 1.0
+  h_signature_threshold: 0.1
+  obstacle_heading_threshold: 0.45
+  switching_blocking_period: 0.0
+  viapoints_all_candidates: True # TEST
+  delete_detours_backwards: True
+  max_ratio_detours_duration_best_duration: 0.5
+  visualize_hc_graph: False
+  visualize_with_time_as_z_axis_scale: False
+
+  # Recovery
+ 
+  shrink_horizon_backup: True
+  shrink_horizon_min_duration: 20.0
+  oscillation_recovery: True
+  oscillation_v_eps: 0.1
+  oscillation_omega_eps: 0.1
+  oscillation_recovery_min_duration: 10
+  oscillation_filter_duration: 10

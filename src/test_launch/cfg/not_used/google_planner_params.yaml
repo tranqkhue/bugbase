@@ -1,0 +1,10 @@
+GooglePlanner:
+  interpolate_distance: 0.2
+  publish_plan: true
+  ignore_heading : true
+
+  recall_if_fail: false
+   
+  api_key: fdasfasdfkkasd
+  python_service: /get_path_map
+
