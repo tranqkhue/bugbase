@@ -1,12 +1,14 @@
 <launch>
     <!-- Setting up parameters for image_segmentation module and lidar module -->
     <arg name="main_path" default="$(find bugcar_perception_stack)"/>
-    <!-- <rosparam file="$(arg main_path)/cfg/image_segmentation.yaml" command="load" ns="image_segmentation"/> -->
     <rosparam file="$(arg main_path)/cfg/common_road_curb.yaml" command="load" ns="road_curb"/>
 
     <!-- running computer vision tasks here -->
-    <node name="image_segmentation" pkg="bugcar_perception_stack" type="inference_video_raw.py" cwd="node"> </node>
+    <node name="image_segmentation" pkg="bugcar_perception_stack" type="inference_video_raw.py" cwd="node">
+        <rosparam file="$(arg main_path)/cfg/bird_eyes_view.yaml" command="load"/>
+    </node>
     <node name="lidar_high" pkg="bugcar_perception_stack" type="calibration_laser_scan_rotated.py" cwd="node"/>
+    
     <node name="laser_realsense_front" pkg="bugcar_perception_stack" output="screen" type="use_rs_as_lidar_ros.py">
         <rosparam file="$(arg main_path)/cfg/front_road_curb.yaml" command="load"/>
     </node>

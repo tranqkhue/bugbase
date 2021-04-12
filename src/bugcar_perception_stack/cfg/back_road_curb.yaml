@@ -1,4 +1,4 @@
 serial_no: "819312071039"
 topic_name: realsense_grid_back
 orientation: [0,0,1,0]
-position: [-0.45,2.5,0]
+position: [-0.45,2.5,0] # meters
