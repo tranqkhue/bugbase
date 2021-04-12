@@ -1,0 +1,15 @@
+# These are the default parameters in case front and back don't provide them.
+# However, i believe that you don't even need to modify them, because they are good enough.
+fps : 30
+map_size: 5
+map_resolution: 0.02
+sampling_radius: 0.3
+min_height_from_realsense: 0.08
+height_from_ground: 0.04
+emergency: true
+orientation: [0,0,0,1]
+position: [0,-2.5,0]
+
+#However, there are some parameters that must be specific to each camera, for instance: camera number and the
+# topic the publisher will publish to.
+
