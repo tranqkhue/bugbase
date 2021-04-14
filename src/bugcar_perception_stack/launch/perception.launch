@@ -1,22 +1,26 @@
 <launch>
     <!-- Setting up parameters for image_segmentation module and lidar module -->
     <arg name="main_path" default="$(find bugcar_perception_stack)"/>
-    <rosparam file="$(arg main_path)/cfg/common_road_curb.yaml" command="load" ns="road_curb"/>
+    <rosparam file="$(arg main_path)/cfg/common_road_curb_param.yaml" command="load" ns="road_curb"/>
 
     <!-- running computer vision tasks here -->
-    <node name="image_segmentation" pkg="bugcar_perception_stack" type="inference_video_raw.py" cwd="node">
-        <rosparam file="$(arg main_path)/cfg/bird_eyes_view.yaml" command="load"/>
-    </node>
-    <node name="lidar_high" pkg="bugcar_perception_stack" type="calibration_laser_scan_rotated.py" cwd="node"/>
-    
-    <node name="laser_realsense_front" pkg="bugcar_perception_stack" output="screen" type="use_rs_as_lidar_ros.py">
-        <rosparam file="$(arg main_path)/cfg/front_road_curb.yaml" command="load"/>
-    </node>
-    <node name="laser_realsense_back" pkg="bugcar_perception_stack" output="screen" type="use_rs_as_lidar_ros.py">
-        <rosparam file="$(arg main_path)/cfg/back_road_curb.yaml" command="load"/>
-    </node>
-    <!-- LIDAR related stuff -->
+    <group ns="map">
+        <node name="image_segmentation" pkg="bugcar_perception_stack" output="screen" type="inference_video_raw.py" cwd="node">
+            <rosparam file="$(arg main_path)/cfg/bird_eyes_view.yaml" command="load"/>
+        </node>
+        <node name="lidar_high" pkg="bugcar_perception_stack" type="calibration_laser_scan_rotated.py" cwd="node">
+            <rosparam file="$(arg main_path)/cfg/realsense_top_as_lidar.yaml" command="load"/>
+        </node>
+        
+        <node name="laser_realsense_front" pkg="bugcar_perception_stack" output="screen" type="use_rs_as_lidar_ros.py">
+            <rosparam file="$(arg main_path)/cfg/front_road_curb.yaml" command="load"/>
+        </node>
+        <node name="laser_realsense_back" pkg="bugcar_perception_stack" output="screen" type="use_rs_as_lidar_ros.py">
+            <rosparam file="$(arg main_path)/cfg/back_road_curb.yaml" command="load"/>
+        </node>
+    </group>
+    <!-- LIDAR related stuff
     <include file="$(find rplidar_ros)/launch/rplidar.launch" />
     <node pkg="tf" type="static_transform_publisher" name="lidar_transform" args="0 0 0 0 0 1 0 base_link laser 100" clear_params="true"/>
-    <node name="lidar_360" pkg="lidar_raytrace" type="raytrace_2h30_sang.py" cwd="node" output="screen"/>	
+    <node name="lidar_360" pkg="lidar_raytrace" type="raytrace_2h30_sang.py" cwd="node" output="screen"/>	  -->
 </launch>

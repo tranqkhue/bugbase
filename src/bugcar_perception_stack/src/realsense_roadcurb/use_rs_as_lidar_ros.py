@@ -1,3 +1,4 @@
+#!/home/thang/anaconda3/envs/tf2env/bin/python
 #!/root/miniconda3/envs/tf2.2/bin/python
 # -*- coding: utf-8 -*-
 """
@@ -21,7 +22,7 @@ rate = rospy.Rate(15)
 
 
 # =====================SECTION FOR COLLECTING PARAMETERS====================
-node_name = rospy.get_name()
+node_name, node_namespace = rospy.get_name(), rospy.get_namespace()
 params_dict = {"map_resolution": 0, "map_size": 0, "orientation": 0, "position": 0,
                "sampling_radius": 0,
                "min_height_from_realsense":  0, "height_from_ground": 0,
@@ -47,7 +48,8 @@ detector = RoadCurbDetector(*arg_list_for_detector)
 # ===========================================================================
 
 
-pub = rospy.Publisher(params_dict["topic_name"], OccupancyGrid, queue_size=2)
+pub = rospy.Publisher(
+    node_namespace+params_dict["topic_name"], OccupancyGrid, queue_size=2)
 # Also setup an Emergency object here:
 emergency_handler = Emergency(params_dict["orientation"])
 

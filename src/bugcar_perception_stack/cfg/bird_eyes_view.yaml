@@ -2,3 +2,4 @@ serial_no: "841612070098"
 width: 10 # unit : m
 height: 20 # unit : m
 cell_size: 0.1 # unit : m
+topic_name: image_segmentation
