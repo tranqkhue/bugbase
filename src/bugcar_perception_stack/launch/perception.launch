@@ -19,8 +19,8 @@
             <rosparam file="$(arg main_path)/cfg/back_road_curb.yaml" command="load"/>
         </node>
     </group>
-    <!-- LIDAR related stuff
+    <!-- LIDAR related stuff -->
     <include file="$(find rplidar_ros)/launch/rplidar.launch" />
     <node pkg="tf" type="static_transform_publisher" name="lidar_transform" args="0 0 0 0 0 1 0 base_link laser 100" clear_params="true"/>
-    <node name="lidar_360" pkg="lidar_raytrace" type="raytrace_2h30_sang.py" cwd="node" output="screen"/>	  -->
+    <node name="lidar_360" pkg="lidar_raytrace" type="raytrace_2h30_sang.py" cwd="node" output="screen"/>	 
 </launch>

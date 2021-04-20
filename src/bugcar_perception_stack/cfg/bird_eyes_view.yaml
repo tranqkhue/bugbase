@@ -1,5 +1,5 @@
-serial_no: "841612070098"
+serial_no: "841612070098" # serial id of your camera
 width: 10 # unit : m
 height: 20 # unit : m
 cell_size: 0.1 # unit : m
-topic_name: image_segmentation
+topic_name: image_segmentation 
